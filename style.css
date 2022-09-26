@@ -10,6 +10,20 @@ h1{
 
 }
 
+/*.button1{
+background-color: white;
+color: black;
+border: 3px solid;
+
+}
+
+.button1:hover{
+background-color: brown;
+color: brown;
+
+}
+*/
+
   h1 {
     color: black;
     font-weight: lighter;
