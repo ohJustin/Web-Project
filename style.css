@@ -1,9 +1,10 @@
 body {
-    animation-name: myframes;
-    animation-duration: 8s;
+  background-color: lightsalmon;
+    /* animation-name: myframes;
+    animation-duration: 25s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    align-items: center;
+    align-items: center; */
 }
 
 h1{
@@ -24,12 +25,40 @@ color: brown;
 }
 */
 
+  header{
+    padding: 60px;
+    align-items: center;
+    text-align: center;
+    color: black;
+    font-weight:bolder;
+    font-size: 35px;
+
+    font-style: oblique;
+    
+ 
+  }
+
+  textarea{
+    width: 800px;
+    height: 250px;
+  }
+
   h1 {
     color: black;
     font-weight: lighter;
     font-weight: 400;
     font-style: oblique;
+    width: auto;
+    text-align: center;
   }
+
+  div{
+    align-items: baseline;
+  }
+
+  /* fieldset{
+    align-self: left;
+  } */
 
   @keyframes myframes {
     0%
