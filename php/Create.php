@@ -1,3 +1,8 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +24,7 @@
     <body>
         
 
-    <form action = "" method = "post">
+    <form action = "" method = "POST">
         <div class = "w3-container w3-display-middle">
         <input class = "w3-monospace" type="text" placeholder="Thought Title" class = "" name = "title"><br></br>
         <textarea class = "w3-monospace" name = "blogcontent"></textarea><br></br>

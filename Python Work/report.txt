@@ -1,0 +1,2 @@
+
+Averages: midterm1 {midtermone}, midterm2 {midtermtwo}, final {final}

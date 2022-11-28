@@ -1,6 +1,10 @@
 // Template for connecting our database via the login data received. {9/21/22}
 
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 $server = "";
 $username = "";
 $password = "";
