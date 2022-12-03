@@ -12,6 +12,7 @@ ini_set('display_errors', '1');
 <title>Home Page[W-H-E]</title>
 <link rel ="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="css/w3.css">
 <meta charset = "utf-8">
 
 
@@ -21,7 +22,7 @@ ini_set('display_errors', '1');
 <body>
     <div class = "navbar">
         <a class = "active" href="HPage.html">Home</a>
-        <a href = "Create.html">Create</a>
+        <a href = "Create.php">Create</a>
     </div>
 
 <header2>
@@ -29,7 +30,7 @@ ini_set('display_errors', '1');
 </header>
 
     <div class = "w3-margin w3-grey w3-card-4">
-        <a href = "Create.html" class = "w3-container w3-display-middle"><button class = "w3-hover-green">Create Your Thought[+]</button></a>
+        <a href = "Create.php" class = "w3-container w3-display-middle"><button class = "w3-hover-green">Create Your Thought[+]</button></a>
     </div>
 
 </body>
