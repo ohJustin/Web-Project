@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $mysqli = new mysqli("localhost","root","root","blogsite",8889);
 
-    $sql = "INSERT INTO Users VALUES ('". $username . "', '$passwordHash', 'testuniversity')";
+    $sql = "INSERT INTO Users VALUES ('". $mysqli->real_escape_string($username) . "', '$passwordHash', 'testuniversity')";
     if($mysqli->query($sql)){
         echo "<p>Your account has been created.</p>",
              "<p><a href='LForm.php'>Login</a></p></html>";
@@ -53,7 +53,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     elseif($mysqli->errno == 1062){
         echo "<p>The username <strong>$username</strong> already exists.",
          "Please choose another.</p>";
+         die;
     }
+
+    
     else{
         die("Error ($mysqli->errno) $mysqli->error");
     }
