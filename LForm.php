@@ -51,13 +51,12 @@ function getPDO(){
                 }
 
                 else{
-                    echo "BAD PASSWORD";
+                    echo "<script>alert('Bad Login Information Try Again!');</script>";
                 }
             }
-            // else{
-            //     #header("Location:LForm.php");
-            //     echo "BAD PASSWORD";
-            // } 
+            else{
+                echo "<script>alert('Bad Login Information Try Again!');</script>";
+            }
         }
     }
 
@@ -76,7 +75,7 @@ function getPDO(){
     <title>Login</title>
     <link rel ="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
     <meta charset = "utf-8">
 
 
@@ -89,7 +88,7 @@ function getPDO(){
         <div class = "login-wrapper">
         <form action = "" method = "post" class = "form">
         <p1>
-            <h1>Login</h1>
+            <h2>Login</h2>
         </p1>
         
            
@@ -104,7 +103,10 @@ function getPDO(){
                     <input type = "password" placeholder="" name = "pwd" required>
                     <label for="pwd">Password</label>
                 </div>  
+                
                 <div class = "input-group"> 
+                    <button class = "submit-btn" onclick="location.href='RForm.php'" type="button">No Account?</button>
+                    
                     <button class = "submit-btn w3-hover-green">Log In</button>
                 </div>  
 
@@ -113,6 +115,6 @@ function getPDO(){
 
             
         </form>
-        <footer>&copy; Login Form Test{Justin Burns}</footer>
+        <footer>&copy; Login Form{Justin Burns}</footer>
     </body>
     </html>

@@ -12,7 +12,7 @@ ini_set('display_errors', '1');
 //     header("Location: RForm.php");
 // }
 
-
+// IMPLEMENT LISTING(S) OF BLOG ENTRIES \ SEARCH ONE-TO-MANY DB TABLES ! 12/4/2022
 
 ?>
 

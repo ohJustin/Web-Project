@@ -42,6 +42,7 @@ function sqlInsertBlogQuery(){
 
 function getValue($key){
     if(isset($_POST[$key])){
+        $key = $_POST[$key];
         $key = htmlspecialchars(trim($key));
         return $key;
     }

@@ -103,49 +103,60 @@ function sqlInsertUser(){
 
 <!DOCTYPE html>
 <html>
-    <head></head>
     <title>Registration Form</title>
-    <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="rstyle.css">
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <header class ="w3-container w3-threequarter  w3-red w3-border-brown">
-            Registration Page!
-        </header>
-    <body> 
-       
+    <header class ="w3-container w3-threequarter w3-display-top w3-red w3-monospace w3-border-brown">
+            Make your account!
+    </header>
 
-        
-        <form action = "" method = "post">
-            
-            
-                <br></br>
-                <div class = "w3-container w3-margin w3-grey w3-card-4">
-                 <legend>User Information:</legend>   
-                    <p1>
-                        <h1>Registration Form</h1>
-                    <p>
-                    <input type = "username" placeholder = "Username" name = "usr" required autofocus>
+    <body> 
+                <div class = "login-wrapper">
+                <form action = "" method = "post" class = "form">
+                    <!-- <img src="background.jpg" alt=""> -->
+                <p1>
+                    <h2>Registration Form</h2>
+                </p1>
+                    
+                    <div class = "input-group">
+                    <input type = "username" placeholder = "" name = "usr" required autofocus>
+                    <label for="usr">Username</label>
+                    </div>  
+
                     <br></br>
-                    <input type = "password" placeholder="Password" name = "pwd" required>
+                    <div class = "input-group">
+                    <input type = "password" placeholder="" name = "pwd" required>
+                    <label for="pwd">Password</label>
+                    </div>  
+
                     <br></br>
-                    <input type = "email" placeholder="Email" name = "eml" required>
+                    <div class = "input-group">
+                    <input type = "email" placeholder="" name = "eml" required>
+                    <label for="eml">Email</label>
+                     
                     <br></br>
                     <select name="Colleges" id="college">
+                        <div class = "college-wrapper">
                         <option value="disabled">Select your university</option>
+                        <label for="college">University</label>
                         <option value="siue">Southern Illinois University Edwardsville</option>
                         <option value="siuc">Southern Illinois University Carbondale</option>
                         <option value="bu">Bradley University(Peoria)</option>
                         <option value="slu">Saint Louis University</option>
-                      </select>
+                    </div>  
+                    </select>
                     <br></br>
+                    </div>  
 
-                    <button class = "w3-hover-green" >Register</button>
-              </p>
-                </div>
-            
-            <!-- END OF CONTAINER -->
+                    <div class = "input-group"> 
+                    <button class = "submit-btn w3-hover-green" >Register</button>
+                    </div>  
+
+                    </div>
             
         </form>
         <footer>&copy;By Justin Burns [2022]</footer>
