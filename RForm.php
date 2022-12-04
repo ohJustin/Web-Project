@@ -110,9 +110,9 @@ function sqlInsertUser(){
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <header class ="w3-container w3-threequarter w3-display-top w3-red w3-monospace w3-border-brown">
+    <!-- <header class ="w3-container w3-threequarter w3-display-top w3-red w3-monospace w3-border-brown">
             Make your account!
-    </header>
+    </header> -->
 
     <body> 
                 <div class = "login-wrapper">

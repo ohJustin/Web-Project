@@ -82,9 +82,9 @@ function getPDO(){
 
     <body> 
         
-        <header class ="w3-container w3-threequarter w3-display-top w3-red w3-monospace w3-border-brown">
+        <!-- <header class ="w3-container w3-threequarter w3-display-top w3-red w3-monospace w3-border-brown">
             Welcome to the Login Page!
-        </header>
+        </header> -->
         <div class = "login-wrapper">
         <form action = "" method = "post" class = "form">
         <p1>
