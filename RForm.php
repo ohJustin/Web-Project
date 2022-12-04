@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+#error_reporting(E_ALL);
+#ini_set('display_errors', '1');
 
 function getPostback(){
     $postback = trim($_SERVER["PHP_SELF"]);
@@ -31,37 +31,72 @@ function getPDO(){
     return $pdo;
 }
 
+function getValue($key){
+    if(isset($_POST[$key])){
+        $key = htmlspecialchars(trim($key));
+        return $key;
+    }
+    else{
+        $key = "key is not set [fix me later]";
+        return $key;
+    }
+}
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+function sqlInsertUser(){
+    $statement = "INSERT INTO user_table (username,hashedpass,university) VALUES (?, ?, ?);";
+    return $statement;
+}
+
+
+
+
     //Grab values submitted by registration page.
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST["usr"])){
+    try{
     $username = $_POST["usr"];
     $password = $_POST["pwd"];
-   
-
+    $college = $_POST['Colleges'];
+    $pdo = getPDO();
+    $lastidQuery = 'SELECT MAX(id) FROM user_table';
     //Hash password
     $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-    //$pdo = getPDO();
-    //$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $mysqli = new mysqli("localhost","root","root","blogsite",8889);
 
-    $sql = "INSERT INTO Users VALUES ('". $mysqli->real_escape_string($username) . "', '$passwordHash', 'testuniversity')";
-    if($mysqli->query($sql)){
-        echo "<p>Your account has been created.</p>",
-             "<p><a href='LForm.php'>Login</a></p></html>";
-      die;
-    }
-    elseif($mysqli->errno == 1062){
-        echo "<p>The username <strong>$username</strong> already exists.",
-         "Please choose another.</p>";
-         die;
-    }
 
+    $pdoStatement = $pdo->prepare(sqlInsertUser());
+    $pdoidStatement = $pdo->prepare($lastidQuery);
+    $idresult = $pdoidStatement->execute;
+    $idresult += 1;
+    $params = [$username, $passwordHash, $college];
+    $result = $pdoStatement->execute($params);
     
-    else{
-        die("Error ($mysqli->errno) $mysqli->error");
+    
+    if($result){
+        header("Location: LForm.php");
+        echo "<p>Your account has been created.</p>",
+        "<p><a href='LForm.php'>Login</a></p></html>";
     }
 
-}
+    }
+    catch(PDOException $e){
+        #echo $e->getMessage();
+        if(!$result){
+            $_POST["usr"] = '';
+            $_POST["pwd"] = '';
+            echo "Registration error, please try again.<br></br><br></br>";
+        }
+    }
+    finally{
+        $pdo = null;
+    }
+
+    }
+    }
+
+
+
+
+
 
 
 ?>
@@ -91,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <p1>
                         <h1>Registration Form</h1>
                     <p>
-                    <input style = "" placeholder = "Username" name = "usr" required autofocus>
+                    <input type = "username" placeholder = "Username" name = "usr" required autofocus>
                     <br></br>
                     <input type = "password" placeholder="Password" name = "pwd" required>
                     <br></br>
@@ -105,7 +140,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <option value="slu">Saint Louis University</option>
                       </select>
                     <br></br>
-                    <button class = "w3-hover-green">Register</button>
+
+                    <button class = "w3-hover-green" >Register</button>
               </p>
                 </div>
             
