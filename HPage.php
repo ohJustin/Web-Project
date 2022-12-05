@@ -1,8 +1,11 @@
 <?php
+session_start();
+
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-session_start();
-#$_SESSION["username"] = $usr;
+
+// $username = $_SESSION["username"];
 
 #$selectallQuery = "SELECT * FROM blog_entries";
 
@@ -35,10 +38,11 @@ function getPDO(){
 }
 
 if(isset($_SESSION["username"])){
-    #$name = $_SESSION['usr'];
-   
+    echo 'Username: <br></br> '.$_SESSION["username"] .' ';
+    echo '<br></br>ID: ' . $_SESSION["userid"] . '<br></br>';
+   echo ''.session_id();
 }
-else{
+elseif(!isset($_SESSION["username"])){
     header("Location: RForm.php");
 }
 
