@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -40,13 +41,20 @@ function getPDO(){
             $usr = $_POST['usr'];
        
             $tablepswQuery = "SELECT hashedpass FROM user_table WHERE username = '$usr'";
+            $student_idquery = "SELECT id FROM user_table WHERE username = '$usr'";
          
             $matchedpasswordHashedResult = $pdo->query($tablepswQuery);
             echo "" .$matchedpasswordHashedResult->rowCount();
 
+            $user_id = $pdo->query($student_idquery);
+            #$user_id = $user_id->fetch(PDO::FETCH_OBJ)->id;
+
             if($matchedpasswordHashedResult != false && $matchedpasswordHashedResult->rowCount() == 1){
                 $matchedpasswordHashed = $matchedpasswordHashedResult->fetch(PDO::FETCH_OBJ)->hashedpass;
                 if(password_verify($pwd,$matchedpasswordHashed)){
+                    $_SESSION["username"] = $usr;
+                    $_SESSION["userid"] = $user_id;
+                    
                     header("Location: HPage.php");
                 }
 

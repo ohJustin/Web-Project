@@ -154,6 +154,8 @@ function sqlInsertUser(){
 
                     <div class = "input-group"> 
                     <button class = "submit-btn w3-hover-green" >Register</button>
+                    <br></br>
+                    <a href="LForm.php" class = "login-btn w3-hover-green w3-xlarge">Login</a>
                     </div>  
 
                     </div>

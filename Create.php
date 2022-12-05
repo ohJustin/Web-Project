@@ -1,16 +1,19 @@
 <?php
 error_reporting(E_ALL);
+session_start();
 ini_set('display_errors', '1');
 
-#function postCollector()
 
-// if(isset($_SESSION['usr'])){
-//     $name = $_SESSION['usr'];
-//     echo "Name: $name";
-// }
-// else{
-//     header("Location: RForm.php");
-// }
+
+if(isset($_SESSION["username"])){
+    #$name = $_SESSION['usr'];
+    #$university = getValue($_SESSION['university']);
+    echo '' .$_SESSION["userid"];
+    echo '' .$_SESSION["username"];
+}
+else{
+    header("Location: RForm.php");
+}
 
 function getDSN(){
     //$dsn = "mysql:host=localhost;dbname=test";
@@ -36,7 +39,7 @@ function getPDO(){
 }
 
 function sqlInsertBlogQuery(){
-    $statement = "INSERT INTO blog_entries (blogdata,university,title) VALUES(?, ?, ?);";
+    $statement = "INSERT INTO blog_entries (userid, blogdata,university, title, type) VALUES(?, ?, ?, ?, ?);";
     return $statement;
 }
 
@@ -58,17 +61,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         #Verifies whether the title blog and type have been entered/selected.
         if(isset($_POST['title'], $_POST['blogcontent'], $_POST['type'])){
+            // (blogdata,university, title, type)
         $title = getValue('title');
         $blog = getValue('blogcontent');
         $type = getValue('type');
+        $university = 'NA';
         #ADJUST paramsBlog is error occurs? <===> Remember to sanitize these values.
         #$idBlog = $pdo->lastInsertId();
-        $paramsBlog = [$title,$blog,$type];
+        $paramsBlog = [$_SESSION["userid"],$blog,$university, $title, $type];
         
         $pdoStatement = $pdo->prepare(sqlInsertBlogQuery());
         $pdoStatement->execute($paramsBlog);
         $idBlog = $pdo->lastInsertId();
-        header("Location: Hpage.php");
+
+        header("Location: Hpage.php?info=added");
         echo " '<br>Inserted blog record with id ' . $idBlog</br>";
     }
 
@@ -124,6 +130,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             <header>Your fellow</header>
         </div> -->
     </form>
+
+    <div class="entries col-4 d-flex justify-content-center align-items-center">
+
+
+
+
+</div>
 
 </body>
 </html>
