@@ -52,29 +52,49 @@ function sqlInsertUser(){
 
     //Grab values submitted by registration page.
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
     if(isset($_POST["usr"])){
     try{
     $username = $_POST["usr"];
     $password = $_POST["pwd"];
     $college = $_POST['Colleges'];
+    
+
     $pdo = getPDO();
+
     $lastidQuery = 'SELECT MAX(id) FROM user_table';
     //Hash password
     $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
 
+    
+
     $pdoStatement = $pdo->prepare(sqlInsertUser());
     $pdoidStatement = $pdo->prepare($lastidQuery);
     $idresult = $pdoidStatement->execute;
     $idresult += 1;
-    $params = [$username, $passwordHash, $college];
+    $params = [$username, $passwordHash, $college,];
     $result = $pdoStatement->execute($params);
+
+    if($_FILES["pfp"]["error"] == UPLOAD_ERR_OK) {
+        
+        $tmp_name = $_FILES["pfp"]["tmp_name"];
+        $name = basename($_FILES["pfp"]["name"]);
+        $folder = "./image/" . $name;
+
+        move_uploaded_file($tmp_name, "$upload_dir/$name");
+        $sql = "UPDATE user_table set pfp = '$name' WHERE username = '$username'";
+        // UPDATE user_table set pfp = 'blahblah' WHERE username = '$';
+        $pdo->prepare($sql);
+        $pdo->execute;
+    }
+
     
     
     if($result){
-        header("Location: LForm.php");
+        header("Location: login.php");
         echo "<p>Your account has been created.</p>",
-        "<p><a href='LForm.php'>Login</a></p></html>";
+        "<p><a href='login.php'>Login</a></p></html>";
     }
 
     }
@@ -143,20 +163,40 @@ function sqlInsertUser(){
                         <div class = "college-wrapper">
                         <option value="disabled">Select your university</option>
                         <label for="college">University</label>
-                        <option value="siue">Southern Illinois University Edwardsville</option>
-                        <option value="siuc">Southern Illinois University Carbondale</option>
-                        <option value="bu">Bradley University(Peoria)</option>
-                        <option value="slu">Saint Louis University</option>
+                        <option value="Southern Illinois University Edwardsville">Non-Student(ALL ARE WELCOME!)</option>
+                        <option value="Southern Illinois University Edwardsville">Southern Illinois University Edwardsville</option>
+                        <option value="Southern Illinois University Carbondale">Southern Illinois University Carbondale</option>
+                        <option value="Bradley University(Peoria)">Bradley University(Peoria)</option>
+                        <option value="Saint Louis University">Saint Louis University</option>
                     </div>  
                     </select>
+
+                    
+
+                    
+
                     <br></br>
+                    
+                    <div class = "w3-margin-bottom input-group"> 
+                    <!-- <label class="">Upload Profile Picture -->
+                        <input type="file"name="pfp"> 
+                    <!-- </label> -->
+                    </div> 
+
                     </div>  
 
-                    <div class = "input-group"> 
+                    
+                    
+                    <br>
+                    <div class = "w3-margin-bottom input-group"> 
                     <button class = "submit-btn w3-hover-green" >Register</button>
-                    <br></br>
-                    <a href="LForm.php" class = "login-btn w3-hover-green w3-xlarge">Login</a>
                     </div>  
+                    <br>
+                    <div class = "w3-margin-bottom input-group w3-jumbo"> 
+                    <button onclick="window.location.href='login.php';" class = "btn w3-hover-green w3-text-black" >
+                      Have an account already? Login Here. 
+                    </button>
+                    </div>
 
                     </div>
             

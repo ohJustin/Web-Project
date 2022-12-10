@@ -8,11 +8,11 @@ ini_set('display_errors', '1');
 if(isset($_SESSION["username"])){
     #$name = $_SESSION['usr'];
     #$university = getValue($_SESSION['university']);
-    echo '' .$_SESSION["userid"];
-    echo '' .$_SESSION["username"];
+    // echo '' .$_SESSION["userid"];
+    // echo '' .$_SESSION["username"];
 }
 else{
-    header("Location: RForm.php");
+    header("Location: registration.php");
 }
 
 function getDSN(){
@@ -61,20 +61,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         #Verifies whether the title blog and type have been entered/selected.
         if(isset($_POST['title'], $_POST['blogcontent'], $_POST['type'])){
-            // (blogdata,university, title, type)
+            
+        #Query data
         $title = getValue('title');
         $blog = getValue('blogcontent');
         $type = getValue('type');
         $university = 'NA';
+
         #ADJUST paramsBlog is error occurs? <===> Remember to sanitize these values.
-        #$idBlog = $pdo->lastInsertId();
         $paramsBlog = [$_SESSION["userid"],$blog,$university, $title, $type];
         
         $pdoStatement = $pdo->prepare(sqlInsertBlogQuery());
         $pdoStatement->execute($paramsBlog);
         $idBlog = $pdo->lastInsertId();
 
-        header("Location: Hpage.php?info=added");
+        header("Location: index.php?info=added");
         echo " '<br>Inserted blog record with id ' . $idBlog</br>";
     }
 
@@ -89,24 +90,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 }
 ?>
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link rel="stylesheet" href="w3.css">
+<link rel ="stylesheet" href="createstyle.css">
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- NAVIGATION BAR AND HEADER -->
-    <div class = "navbar w3-bar w3-border-black w3-cursive">
-            <a class = "active w3-xxlarge" href="HPage.php">Home</a>
-            <a class = "w3-xxlarge" href = "Create.php">Create</a>
+<!-- NAVIGATION BAR -->
+<div class = "navbar w3-bar w3-border-black w3-cursive">
+            <a class = "w3-xlarge" href="index.php">Home</a>
+            <a class = "w3-xlarge" href = "create.php">Create</a>
+            <a class = "active w3-xlarge " href = "profile.php">Profile</a>
+            <a class = "w3-xlarge " href = "search.php">Connect</a>
+            <a class = "w3-xlarge " href = "about.php">Q&A</a>
+            <!-- <a href = "logout.php" class = "w3-btn w3-hover-green">Logout</a> -->
+            <button onclick="window.location.href='logout.php';">
+            Logout
+            </button>
     </div>
-<header class = "w3-jumbo w3-monospace w3-bottombar w3-topbar w3-border-black ">Publish Your Thought &#128540;</header>
+<header style="text-shadow:10px 1px 0 #444" class = "w3-panel w3-jumbo w3-monospace w3-bottombar w3-topbar w3-border-black w3-green">Publish Your Thought &#128540;</header>
 <title>The Wall</title>
 </head>
 
 
-<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-<link rel="stylesheet" href="css/w3.css">
-<link rel ="stylesheet" href="createstyle.css">
+
 
 <meta charset = "utf-8">
 
@@ -115,7 +125,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <div class = "w3-container w3-display-middle">
     <form action = "" method = "POST">   
         <br></br><br></br>
-        <input class = "w3-monospace" type="text" placeholder="Thought Title..." class = "" name = "title"><br></br>
+        <div class = "w3-center">
+        <input class = "w3-monospace w3-center" type="text" placeholder="Thought Title..." class = "" name = "title"><br></br>
+</div>
+<div class = "w3-center">
         <textarea name = "blogcontent" placeholder="What are you thinking?...."></textarea><br></br>
         <select class = "w3-monospace" name="type" id="type">
             <option value="disabled">Select your thought type</option>

@@ -8,8 +8,9 @@
 body {
   /* background-color: lightsalmon; */
   font-family: monospace;
-  background: url('background.jpg') no-repeat center;
-  background-size: cover;
+  background: url('background.jpg');
+  background-repeat:no-repeat;
+  background-size:cover;
     /* animation-name: myframes;
     animation-duration: 25s;
     animation-iteration-count: infinite;

@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$year = date('Y');
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -37,20 +37,26 @@ function getPDO(){
     return $pdo;
 }
 
+#CHECK IF SESSION HAS BEEN CREATED ALONG WITH ITS KEYS AND VALUES(ID,USERNAME)
 if(isset($_SESSION["username"])){
-    echo 'Username: <br></br> '.$_SESSION["username"] .' ';
-    echo '<br></br>ID: ' . $_SESSION["userid"] . '<br></br>';
-   echo ''.session_id();
+//     echo 'Username: <br></br> '.$_SESSION["username"] .' ';
+//     echo '<br></br>ID: ' . $_SESSION["userid"] . '<br></br>';
+//    echo ''.session_id();
 }
 elseif(!isset($_SESSION["username"])){
-    header("Location: RForm.php");
+    header("Location: registration.php");
 }
 
 
 $mypdo = getPDO();
 $entries = sqlSelectEntriesQuery();
 $entries = $mypdo->query($entries);
-// IMPLEMENT LISTING(S) OF BLOG ENTRIES \ SEARCH ONE-TO-MANY DB TABLES ! 12/4/2022
+
+
+
+// if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+// }
 
 ?>
 
@@ -60,21 +66,31 @@ $entries = $mypdo->query($entries);
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<title>Home Page[W-H-E]</title>
+<title>Home Page</title>
+
+
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel ="stylesheet" href="rstyle.css">
-<link href="css/w3.css">
+<link href="w3.css">
 <meta charset = "utf-8">
 
-<!-- NAVIGATION BAR AND HEADER -->
-    <div class = "navbar w3-bar w3-border-black w3-cursive">
-            <a class = "active w3-xxlarge" href="HPage.php">Home</a>
-            <a class = "w3-xxlarge" href = "Create.php">Create</a>
+<!-- NAVIGATION BAR -->
+<div class = "navbar w3-bar w3-border-black w3-cursive">
+            <a class = "w3-xlarge" href="index.php">Home</a>
+            <a class = "w3-xlarge" href = "create.php">Create</a>
+            <a class = "active w3-xlarge " href = "profile.php">Profile</a>
+            <a class = "w3-xlarge " href = "search.php">Connect</a>
+            <a class = "w3-xlarge " href = "about.php">Q&A</a>
+            <!-- <a href = "logout.php" class = "w3-btn w3-hover-green">Logout</a> -->
+            <button onclick="window.location.href='logout.php';">
+            Logout
+            </button>
     </div>
 
 <body>
-        
+        <!-- HEADER/TITLE BELOW NAVIGATION BAR -->
+        <header style="text-shadow:10px 1px 0 #444" class = "w3-panel w3-jumbo w3-monospace w3-bottombar w3-topbar w3-border-black w3-green"> The Wall </header>
         <?php if(isset($_REQUEST['info'])){ ?>
             <?php if($_REQUEST['info'] == "added"){?>
                 <div class="alert alert-success" role="alert">
@@ -83,25 +99,32 @@ $entries = $mypdo->query($entries);
             <?php }?>
         <?php } ?>
 
-    <div class = "w3-margin w3-grey w3-card-4">
-        <a href = "Create.php" class = "w3-container w3-cursive w3-display-middle"><button class = "w3-hover-green">Create Your Thought[+]</button></a>
-    </div>
+    
+<!-- DISPLAYING OF ALL BLOG ENTRIES -->
+<br></br>
 
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-    <div class = "row">
+<?php if(isset($_GET['subbed'])){?>
+    <p class="error w3-center "><?php echo $_GET['subbed']; ?></p>
+            <?php }?>
+    <div class = "card-wrapper">
         <?php foreach($entries as $e){ ?>
-                    <div class="w3-col-12 w3-col-lg-4 w3-d-flex w3-center">
-                        <div class="w3-card w3-text-white w3-bg-dark w3-mt-5" style="width: 18rem;">
-                            <div class="w3-card-body w3-blue">
+                    <div class="w3-center ">
+                        <div class=" w3-card w3-hover-shadow w3-text-white w3-bg-dark w3-mt-5 w3-large" style="width: 18rem;">
+                            <div class="card-body w3-card-body w3-green">
                                 <h5 class="w3-card-title"><?php echo $e['title'];?></h5>
                                 <p class="w3-card-text"><?php echo substr($e['blogdata'], 0, 50);?>...</p>
                                 <a href="view.php?blogid=<?php echo $e['blogid']?>" class="w3-btn w3-btn-light">Read More &rarr;</a>
                             </div>
                         </div>
                     </div>
+                    
                 <?php }?>
             </div>
     </div>
 </body>
+
+<footer class="w3-panel w3-center w3-text-gray w3-small">
+             &copy; <?php echo $year; ?> Justin Burns
+        </footer>
 
 </html>

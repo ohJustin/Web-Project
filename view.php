@@ -51,10 +51,12 @@ if(isset($_REQUEST['blogid'])){
 
 <!-- NAVIGATION BAR AND HEADER -->
     <div class = "navbar w3-bar w3-border-black w3-cursive">
-            <a class = "active w3-xxlarge" href="HPage.php">Home</a>
-            <a class = "w3-xxlarge" href = "Create.php">Create</a>
+            <a class = "w3-xlarge" href="index.php">Home</a>
+            <a class = "w3-xlarge" href = "create.php">Create</a>
+            <a class = "w3-xlarge " href = "profile.php">Profile</a>
+            <a class = "active w3-xlarge" href = "">Blog View</a>
     </div>
-<body class = "w3-color-lightsalmon">
+<body class = "">
 
 
     <div>
@@ -62,7 +64,7 @@ if(isset($_REQUEST['blogid'])){
         <div>
             <h1><?php echo $e['title'];?></h1>
         </div>
-        <p><?php echo $e['blogdata'];?></p>
+        <p class = "w3-large"><?php echo $e['blogdata'];?></p>
     <?php }?>
     </div>
 

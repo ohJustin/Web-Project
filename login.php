@@ -1,9 +1,5 @@
 <?php
 
-// $_SESSION["username"] = '';
-// $_SESSION["userid"] = '';
-
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -40,12 +36,16 @@ function getPDO(){
     try{
         $pdo = getPDO();
         if(isset($_POST['usr'],$_POST['pwd'])){
-            #hash entered password.
+            #User input data.
             $pwd = $_POST['pwd'];
             $usr = $_POST['usr'];
        
+                                // Query strings for user information
+            //hashedpass from user
             $tablepswQuery = "SELECT hashedpass FROM user_table WHERE username = '$usr'";
+            //id
             $student_idquery = "SELECT id FROM user_table WHERE username = '$usr'";
+            
          
             $matchedpasswordHashedResult = $pdo->query($tablepswQuery);
             echo "" .$matchedpasswordHashedResult->rowCount();
@@ -57,13 +57,15 @@ function getPDO(){
                 $matchedpasswordHashed = $matchedpasswordHashedResult->fetch(PDO::FETCH_OBJ)->hashedpass;
                 if(password_verify($pwd,$matchedpasswordHashed)){
                     session_start();
+
+                    // Current Session Keys/Values for the active user.
                     $_SESSION["username"] = $usr;
                     $_SESSION["userid"] = $user_id;
-                    
-                    header("Location: HPage.php");
+                    // Redirect user to Home Page ... Session/Login authenticated.
+                    header("Location: index.php");
                     
                 }
-
+                // Bad Login
                 else{
                     echo "<script>alert('Bad Login Information Try Again!');</script>";
                 }
@@ -119,7 +121,7 @@ function getPDO(){
                 </div>  
                 
                 <div class = "input-group"> 
-                    <button class = "submit-btn" onclick="location.href='RForm.php'" type="button">No Account?</button>
+                    <button class = "submit-btn" onclick="location.href='registration.php'" type="button">No Account?</button>
                     
                     <button class = "submit-btn w3-hover-green">Log In</button>
                 </div>  

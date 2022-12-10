@@ -1,11 +1,12 @@
 body {
-    background-color: rgb(151, 174, 36);
-      /* animation-name: myframes;
-      animation-duration: 25s;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-      align-items: center; */
-  }
+  
+  font-family: monospace;
+  background: url('background.jpg');
+  background-size: 100%;
+
+
+
+}
   
   h1{
   
