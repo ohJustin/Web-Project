@@ -25,6 +25,7 @@ function getPDO(){
 }
 
 
+
 if(isset($_REQUEST['blogid'])){
     $pdo = getPDO();
     $blogid = $_REQUEST['blogid'];
@@ -34,7 +35,6 @@ if(isset($_REQUEST['blogid'])){
 
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -42,11 +42,10 @@ if(isset($_REQUEST['blogid'])){
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<title>Home Page[W-H-E]</title>
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel ="stylesheet" href="vstyle.css">
 
-<!-- <link href="css/w3.css"> -->
 <meta charset = "utf-8">
 
 <!-- NAVIGATION BAR AND HEADER -->
@@ -60,12 +59,18 @@ if(isset($_REQUEST['blogid'])){
 
 
     <div>
-    <?php foreach($blogentry as $e){ ?>
-        <div>
-            <h1><?php echo $e['title'];?></h1>
+    <?php foreach($blogentry as $e){?> 
+    <div>
+        <title><?php echo $e['title'];?></title>
+    </div>
+
+    <div class = "w3-display-middle">
+        <header><?php echo $usrname;?></header>
+        <p class = "blogtext w3-large w3-monospace"><?php echo $e['blogdata'];?></p>
         </div>
-        <p class = "w3-large"><?php echo $e['blogdata'];?></p>
+
     <?php }?>
+    
     </div>
 
 </body>

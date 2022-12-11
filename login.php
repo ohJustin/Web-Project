@@ -39,12 +39,13 @@ function getPDO(){
             #User input data.
             $pwd = $_POST['pwd'];
             $usr = $_POST['usr'];
+        
        
                                 // Query strings for user information
             //hashedpass from user
-            $tablepswQuery = "SELECT hashedpass FROM user_table WHERE username = '$usr'";
+            $tablepswQuery = "SELECT hashedpass FROM registration WHERE username = '$usr'";
             //id
-            $student_idquery = "SELECT id FROM user_table WHERE username = '$usr'";
+            $student_idquery = "SELECT id FROM registration WHERE username = '$usr'";
             
          
             $matchedpasswordHashedResult = $pdo->query($tablepswQuery);
@@ -52,6 +53,7 @@ function getPDO(){
 
             $user_idresult = $pdo->query($student_idquery);
             $user_id = $user_idresult->fetch(PDO::FETCH_OBJ)->id;
+
             
             if($matchedpasswordHashedResult != false && $matchedpasswordHashedResult->rowCount() == 1){
                 $matchedpasswordHashed = $matchedpasswordHashedResult->fetch(PDO::FETCH_OBJ)->hashedpass;
@@ -67,11 +69,11 @@ function getPDO(){
                 }
                 // Bad Login
                 else{
-                    echo "<script>alert('Bad Login Information Try Again!');</script>";
+                    header("Location:login.php?logerr=Bad Login Information! Try Again");
                 }
             }
             else{
-                echo "<script>alert('Bad Login Information Try Again!');</script>";
+                header("Location:login.php?logerr=Bad Login Information! Try Again");
             }
         }
     }
@@ -98,18 +100,20 @@ function getPDO(){
 
     <body> 
         
-        <!-- <header class ="w3-container w3-threequarter w3-display-top w3-red w3-monospace w3-border-brown">
-            Welcome to the Login Page!
-        </header> -->
+
         <div class = "login-wrapper">
         <form action = "" method = "post" class = "form">
         <p1>
             <h2>Login</h2>
         </p1>
-        
+        <?php if (isset($_GET['logerr'])) { ?>
+        <p class="error w3-monospace w3-green w3-center"><?php echo $_GET['logerr']; ?></p>
+        <br></br>
+        <?php } ?>
            
-            <!-- w3-container w3-margin w3-grey w3-card-4 -->
-                
+            
+
+
                 <div class = "input-group">
                     <input style = "" placeholder = "" name = "usr" required autofocus>
                     <label for="usr">User Name</label>

@@ -102,16 +102,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <!-- NAVIGATION BAR -->
 <div class = "navbar w3-bar w3-border-black w3-cursive">
             <a class = "w3-xlarge" href="index.php">Home</a>
-            <a class = "w3-xlarge" href = "create.php">Create</a>
-            <a class = "active w3-xlarge " href = "profile.php">Profile</a>
+            <a class = "active w3-xlarge" href = "create.php">Create</a>
             <a class = "w3-xlarge " href = "search.php">Connect</a>
             <a class = "w3-xlarge " href = "about.php">Q&A</a>
-            <!-- <a href = "logout.php" class = "w3-btn w3-hover-green">Logout</a> -->
-            <button onclick="window.location.href='logout.php';">
-            Logout
-            </button>
+
+
     </div>
-<header style="text-shadow:10px 1px 0 #444" class = "w3-panel w3-jumbo w3-monospace w3-bottombar w3-topbar w3-border-black w3-green">Publish Your Thought &#128540;</header>
+    <div class="dropdown">
+    <a class="dropbtn w3-display-topmiddle w3-center">Options</a>
+    <div class="dropdown-content w3-display-topmiddle">
+        <a href="profile.php">Profile</a>
+        <a href="logout.php">Logout</a>
+</div>
+</div>
+
+<header style="text-shadow:10px 1px 0 #444" class = " w3-jumbo w3-monospace w3-text-green"> Contribute to the wall </header>
 <title>The Wall</title>
 </head>
 
@@ -126,7 +131,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <form action = "" method = "POST">   
         <br></br><br></br>
         <div class = "w3-center">
-        <input class = "w3-monospace w3-center" type="text" placeholder="Thought Title..." class = "" name = "title"><br></br>
+        <input class = "w3-monospace w3-center" type="text" placeholder="Thought Title\Usrname" class = "" name = "title"><br></br>
 </div>
 <div class = "w3-center">
         <textarea name = "blogcontent" placeholder="What are you thinking?...."></textarea><br></br>

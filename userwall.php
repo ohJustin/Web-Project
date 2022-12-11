@@ -6,7 +6,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 function sqlSelectEntriesQuery(){
-    $statement = "SELECT * FROM blog_entries";
+    $userid = $_SESSION["userid"];
+    $statement = "SELECT * FROM blog_entries WHERE userid = '$userid'";
     return $statement;
 }
 

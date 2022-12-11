@@ -58,6 +58,7 @@ function sqlInsertUser(){
     $username = $_POST["usr"];
     $password = $_POST["pwd"];
     $college = $_POST['Colleges'];
+    $_SESSION['University'] = $college;
     
 
     $pdo = getPDO();
@@ -76,18 +77,6 @@ function sqlInsertUser(){
     $params = [$username, $passwordHash, $college,];
     $result = $pdoStatement->execute($params);
 
-    if($_FILES["pfp"]["error"] == UPLOAD_ERR_OK) {
-        
-        $tmp_name = $_FILES["pfp"]["tmp_name"];
-        $name = basename($_FILES["pfp"]["name"]);
-        $folder = "./image/" . $name;
-
-        move_uploaded_file($tmp_name, "$upload_dir/$name");
-        $sql = "UPDATE user_table set pfp = '$name' WHERE username = '$username'";
-        // UPDATE user_table set pfp = 'blahblah' WHERE username = '$';
-        $pdo->prepare($sql);
-        $pdo->execute;
-    }
 
     
     
@@ -155,8 +144,7 @@ function sqlInsertUser(){
 
                     <br></br>
                     <div class = "input-group">
-                    <input type = "email" placeholder="" name = "eml" required>
-                    <label for="eml">Email</label>
+                    
                      
                     <br></br>
                     <select name="Colleges" id="college">
@@ -177,11 +165,7 @@ function sqlInsertUser(){
 
                     <br></br>
                     
-                    <div class = "w3-margin-bottom input-group"> 
-                    <!-- <label class="">Upload Profile Picture -->
-                        <input type="file"name="pfp"> 
-                    <!-- </label> -->
-                    </div> 
+                    
 
                     </div>  
 

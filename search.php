@@ -90,14 +90,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- NAVIGATION BAR AND HEADER -->
-    <div class = "navbar w3-bar w3-border-black w3-cursive">
+<!-- NAVIGATION BAR -->
+<div class = "navbar w3-bar w3-border-black w3-cursive">
             <a class = "w3-xlarge" href="index.php">Home</a>
             <a class = "w3-xlarge" href = "create.php">Create</a>
-            <a class = "w3-xlarge " href = "profile.php">Profile</a>
             <a class = "active w3-xlarge " href = "search.php">Connect</a>
             <a class = "w3-xlarge " href = "about.php">Q&A</a>
+
+
     </div>
+    <div class="dropdown">
+    <a class="dropbtn w3-display-topmiddle w3-center">Options</a>
+    <div class="dropdown-content w3-display-topmiddle">
+        <a href="profile.php">Profile</a>
+        <a href="logout.php">Logout</a>
+</div>
+</div>
+
 
   
 
@@ -110,13 +119,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <title class = " w3-padding-84 ">Your Wall</title>
 <body>  
 
-<p class = "w3-green w3-xlarge w3-display-top"> Search a user: testing </p>
+
 
 <form method = "POST">
   <div class = "container">
   <input class = "search-bar w3-green w3-xlarge w3-display-middle" name="search"placeholder="Search a username...">
   <div>
   <div class = "input-group">
+  <br><br><br><br>
   <button name = "search-btn" class = "submit-btn2 w3-xlarge w3-monospace w3-button w3-blue w3-bar w3-mobile" type="submit">Find!</button>
   </div>
 </form>
