@@ -10,7 +10,7 @@ function getUsername(){
 
 function getDSN(){
   //$dsn = "mysql:host=localhost;dbname=test";
-  $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+  $dsn = "mysql:host=localhost;port=8889;dbname=project";
   return $dsn;
 }
 
@@ -60,7 +60,7 @@ function getValue($key){
             <a class = "active w3-xlarge" href="index.php">Home</a>
             <a class = "w3-xlarge" href = "create.php">Create</a>
             <a class = "w3-xlarge " href = "search.php">Connect</a>
-            <a class = "w3-xlarge " href = "about.php">Q&A</a>
+            <!-- <a class = "w3-xlarge " href = "about.php">Q&A</a> -->
 
 
     </div>
@@ -89,7 +89,7 @@ function getValue($key){
        
         <img src="images/user.png" class = "profile-pic">
         <h3><?php echo ''. $_SESSION['username'] ?></h3>
-        <p class = "w3-large">Blogger / Student <?php echo ''. $uni ?></p>
+        <p class = "w3-large">Blogger / Student <?php echo '@'. $uni ?></p>
       <div class = "social-media">
    
       </div>

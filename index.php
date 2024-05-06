@@ -11,8 +11,7 @@ function sqlSelectEntriesQuery(){
 }
 
 function getDSN(){
-    //$dsn = "mysql:host=localhost;dbname=test";
-    $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+    $dsn = "mysql:host=localhost;port=8889;dbname=project";
     return $dsn;
 }
 
@@ -71,7 +70,7 @@ $clientid = $_SESSION['userid'];
             <a class = "active w3-xlarge" href="index.php">Home</a>
             <a class = "w3-xlarge" href = "create.php">Create</a>
             <a class = "w3-xlarge " href = "search.php">Connect</a>
-            <a class = "w3-xlarge " href = "about.php">Q&A</a>
+            <!-- <a class = "w3-xlarge " href = "about.php">Q&A</a> -->
 
 
     </div>
@@ -89,7 +88,7 @@ $clientid = $_SESSION['userid'];
         <?php if(isset($_REQUEST['info'])){ ?>
             <?php if($_REQUEST['info'] == "added"){?>
                 <div class="alert alert-success" role="alert">
-                    Post has been added successfully
+                    <p class = "w3-large w3-green w3-center">Post has been added successfully</p>
                 </div>
             <?php }?>
         <?php } ?>

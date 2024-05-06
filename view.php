@@ -3,7 +3,7 @@ session_start();
 
 function getDSN(){
     //$dsn = "mysql:host=localhost;dbname=test";
-    $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+    $dsn = "mysql:host=localhost;port=8889;dbname=project";
     return $dsn;
 }
 

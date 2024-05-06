@@ -9,7 +9,7 @@ function getUsername(){
 
 function getDSN(){
   //$dsn = "mysql:host=localhost;dbname=test";
-  $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+  $dsn = "mysql:host=localhost;port=8889;dbname=project";
   return $dsn;
 }
 
@@ -51,27 +51,26 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
          $searched_usr = $_POST['search'];
          $client_id = $_POST['userid'];
           #User input data.
-          $querystring = "SELECT id FROM user_table WHERE username = '$searched_usr'";
+          $querystring = "SELECT id FROM registration WHERE username = '$searched_usr'";
           
           $querystring = $pdo->query($querystring);
-          // if($matchedpasswordHashedResult != false && $matchedpasswordHashedResult->rowCount() == 1){
           if($querystring->rowCount() == 1){
-            // $user_id = $user_idresult->fetch(PDO::FETCH_OBJ)->id;
+
             $_SESSION["searchedusr_id"] = $querystring->fetch(PDO::FETCH_OBJ)->id;
             $_SESSION["searched_usrname"] = $searched_usr;
             $searchedid = $querystring->fetch(PDO::FETCH_OBJ)->id;
               //CHECK IF THE USER IS FOLLOWING THE SEARCHED USER BEFORE REDIRECTING ! 
-              // $activeid = $_SESSION["userid"];
+
               
 
 
-            echo "<script>alert('Good Usrname!');</script>";
-            header("Location: searchedprofile.php");      
+              header("Location: searchedprofile.php");      
+              
           }
           }
 
           else{
-            echo "<script>alert('Bad Search Information Try Again!');</script>";
+            header("Location: search.php?searcherr=Bad name, check for typos.");      
           }
 }
 
@@ -94,8 +93,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <div class = "navbar w3-bar w3-border-black w3-cursive">
             <a class = "w3-xlarge" href="index.php">Home</a>
             <a class = "w3-xlarge" href = "create.php">Create</a>
-            <a class = "active w3-xlarge " href = "search.php">Connect</a>
-            <a class = "w3-xlarge " href = "about.php">Q&A</a>
+            <a class = "registration w3-xlarge " href = "search.php">Connect</a>
+           
 
 
     </div>
@@ -123,6 +122,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 <form method = "POST">
   <div class = "container">
+    <?php if (isset($_GET['searcherr'])) { ?>
+        <p class="error w3-monospace w3-green w3-center"><?php echo ''.$_GET['searcherr']; ?></p>
+
+        <?php } ?>
   <input class = "search-bar w3-green w3-xlarge w3-display-middle" name="search"placeholder="Search a username...">
   <div>
   <div class = "input-group">

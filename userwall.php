@@ -13,10 +13,9 @@ function sqlSelectEntriesQuery(){
 
 function getDSN(){
     //$dsn = "mysql:host=localhost;dbname=test";
-    $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+    $dsn = "mysql:host=localhost;port=8889;dbname=project";
     return $dsn;
 }
-
 function getUsername(){
     $username = "root";
     return $username;
@@ -86,7 +85,7 @@ $clientid = $_SESSION['userid'];
 
 <body>
         <!-- HEADER/TITLE BELOW NAVIGATION BAR -->
-        <header style="text-shadow:10px 1px 0 #444" class = " w3-jumbo w3-monospace w3-text-green"> The Wall </header>
+        <header style="text-shadow:10px 1px 0 #444" class = " w3-jumbo w3-monospace w3-text-green"> Your Wall </header>
         <?php if(isset($_REQUEST['info'])){ ?>
             <?php if($_REQUEST['info'] == "added"){?>
                 <div class="alert alert-success" role="alert">

@@ -12,7 +12,7 @@ function getUsername(){
 
 function getDSN(){
   //$dsn = "mysql:host=localhost;dbname=test";
-  $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+  $dsn = "mysql:host=localhost;port=8889;dbname=project";
   return $dsn;
 }
 
@@ -45,39 +45,6 @@ function getValue($key){
   }
 }
 
-// #"SELECT id FROM user_table WHERE username = '$usr'";
-// function sqlSelectUserEntries(){
-//   $sessid = $_SESSION["userid"];
-//   $statement = "SELECT * FROM user_table WHERE id = '$sessid'";
-//   #$statement = 
-//   return $statement;
-// }
-
-
-
-// $mypdo = getPDO();
-// $entries = sqlSelectUserEntries();
-// $entries = $mypdo->query($entries);
-// function followButton(){
-//     $followPDO = getPDO();
-//     $followquery = "SELECT * FROM follow_table WHERE user_id = '$clientid'";
-//     $button = "<button name = 'sub-btn' class = 'w3-xlarge w3-monospace w3-button w3-blue w3-bar' type='submit'>Subscribe</button>";
-//     // 
-//     $status = 0;
-//     // $button = "<button name = 'sub-btn' class = 'w3-xlarge w3-monospace w3-button w3-blue w3-bar' type='submit'>Subscribe?</button>";
-//     $followquery = $followPDO->query($followquery);
-//     while($row = $followquery->fetch_assoc()){
-//         if($row["follower_id"] == $searchedusr_id){
-//             $status = 1;
-//             exit;
-//         }
-//     }
-//     if($status == 0){
-//         $button = "<button name = 'sub-btn' class = 'w3-xlarge w3-monospace w3-button w3-blue w3-bar' type='submit'>Subscribe</button>";
-//     }
-    
-//     return $button;
-// }
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -108,7 +75,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         else{
         //INSERT SUBSCRIBE ENTRY
         $querystring = $pdo->query($querystring);
-        // if($matchedpasswordHashedResult != false && $matchedpasswordHashedResult->rowCount() == 1){
         if($querystring->rowCount() == 1){
           
           

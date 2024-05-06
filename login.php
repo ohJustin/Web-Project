@@ -9,11 +9,10 @@ ini_set('display_errors', '1');
     $pwdChecked = '';
     $pwdHashed = '';
 
-function getDSN(){
-    //$dsn = "mysql:host=localhost;dbname=test";
-    $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
-    return $dsn;
-}
+    function getDSN(){
+        $dsn = "mysql:host=localhost;port=8889;dbname=project";
+        return $dsn;
+    }
 
 function getUsername(){
     $username = "root";
@@ -41,7 +40,7 @@ function getPDO(){
             $usr = $_POST['usr'];
         
        
-                                // Query strings for user information
+            // Query strings for user information
             //hashedpass from user
             $tablepswQuery = "SELECT hashedpass FROM registration WHERE username = '$usr'";
             //id

@@ -10,10 +10,9 @@ function getPostback(){
 }
 function getDSN(){
     //$dsn = "mysql:host=localhost;dbname=test";
-    $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+    $dsn = "mysql:host=localhost;port=8889;dbname=project";
     return $dsn;
 }
-
 function getUsername(){
     $username = "root";
     return $username;
@@ -43,7 +42,7 @@ function getValue($key){
 }
 
 function sqlInsertUser(){
-    $statement = "INSERT INTO user_table (username,hashedpass,university) VALUES (?, ?, ?);";
+    $statement = "INSERT INTO registration (username,hashedpass,university) VALUES (?, ?, ?);";
     return $statement;
 }
 
@@ -63,7 +62,7 @@ function sqlInsertUser(){
 
     $pdo = getPDO();
 
-    $lastidQuery = 'SELECT MAX(id) FROM user_table';
+    $lastidQuery = 'SELECT MAX(id) FROM registration';
     //Hash password
     $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 

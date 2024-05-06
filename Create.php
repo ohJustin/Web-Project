@@ -6,18 +6,13 @@ ini_set('display_errors', '1');
 
 
 if(isset($_SESSION["username"])){
-    #$name = $_SESSION['usr'];
-    #$university = getValue($_SESSION['university']);
-    // echo '' .$_SESSION["userid"];
-    // echo '' .$_SESSION["username"];
 }
 else{
     header("Location: registration.php");
 }
 
 function getDSN(){
-    //$dsn = "mysql:host=localhost;dbname=test";
-    $dsn = "mysql:host=localhost;port=8889;dbname=blogsite";
+    $dsn = "mysql:host=localhost;port=8889;dbname=project";
     return $dsn;
 }
 
@@ -104,7 +99,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             <a class = "w3-xlarge" href="index.php">Home</a>
             <a class = "active w3-xlarge" href = "create.php">Create</a>
             <a class = "w3-xlarge " href = "search.php">Connect</a>
-            <a class = "w3-xlarge " href = "about.php">Q&A</a>
+            <!-- <a class = "w3-xlarge " href = "about.php">Q&A</a> -->
 
 
     </div>
